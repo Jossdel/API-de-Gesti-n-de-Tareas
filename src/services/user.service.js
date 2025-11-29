@@ -6,6 +6,8 @@ export const UserService = {
   },
 
   create: async (data) => {
+    const userExists = await UserRepository.findByEmail(email);
+    if (userExists) throw new Error("El usuario ya existe.");
     data.password = await hash(data.password);
     return await UserRepository.create(data);
   },

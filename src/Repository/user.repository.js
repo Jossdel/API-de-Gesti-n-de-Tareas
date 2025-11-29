@@ -4,7 +4,9 @@ export const UserRepository = {
   findAll: async () => {
     return await User.findAll();
   },
-
+  findByEmail: async (email) => {
+    return await User.findOne({ where: { email } });
+  },
   findById: async (id) => {
     return await User.findByPk(id);
   },
